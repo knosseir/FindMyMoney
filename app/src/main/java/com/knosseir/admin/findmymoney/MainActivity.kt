@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -22,8 +21,6 @@ import java.util.Arrays
 import java.util.HashMap
 import android.content.Intent
 
-
-
 class MainActivity : AppCompatActivity() {
     private var mAdView: AdView? = null
 
@@ -35,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         builder.setToolbarColor(Color.parseColor("#ff99cc00"))
         val customTabsIntent = builder.build()
 
-        MobileAds.initialize(this, "[redacted]")
+        MobileAds.initialize(this, "ca-app-pub-4503376707811079~8660084966")
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView!!.loadAd(adRequest)
@@ -111,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 try {
                     customTabsIntent.launchUrl(baseContext, Uri.parse(url))
-                } catch (e: ActivityNotFoundException) {
+                } catch (e: Exception) {
                     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(browserIntent)
                 }
